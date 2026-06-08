@@ -14,7 +14,7 @@ wheels/
 .env.local
 
 # Temp / scratch
-canBeDeleted/
+# canBeDeleted/
 
 # Node
 node_modules/

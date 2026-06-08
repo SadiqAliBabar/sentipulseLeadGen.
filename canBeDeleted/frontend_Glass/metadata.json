@@ -1,0 +1,6 @@
+{
+  "name": "LeadGen Pipeline",
+  "description": "Pipeline intelligence and local-SEO lead generation dashboard featuring interactive process loops and audit analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk", "Inter", system-ui, sans-serif;
+  --font-hanken: "Hanken Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-primary: #00685f;
+  --color-primary-container: #008378;
+  --color-on-primary: #ffffff;
+  --color-secondary: #b5005d;
+  --color-secondary-container: #da2676;
+  --color-background: #f8f9fa;
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #3d4947;
+  --color-charcoal: #2D3748;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  background-color: #f8f9fa;
+  color: #191c1d;
+  font-family: var(--font-sans);
+  margin: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.dark body {
+  background-color: #0f0f13;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ==========================================================================
+   CSS Variables & Tokens for Glassmorphism
+   ========================================================================== */
+:root {
+  /* Brand Colors for Ambient Background */
+  --brand-teal: #008378;
+  --brand-purple: #8b5cf6;
+  --brand-pink: #da2676;
+  --brand-blue: #3b82f6;
+
+  /* Dark Mode / Glass Colors */
+  --glass-bg: rgba(25, 25, 30, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   Ambient Liquid Background Orbs
+   ========================================================================== */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  z-index: 0; /* Keep it behind main content */
+  pointer-events: none;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.orb-1 {
+  top: -10%; left: -10%; width: 50vw; height: 50vw;
+  background: radial-gradient(circle, var(--brand-teal) 0%, transparent 70%);
+  animation-duration: 25s; animation-delay: -5s;
+}
+
+.orb-2 {
+  bottom: -20%; right: -10%; width: 60vw; height: 60vw;
+  background: radial-gradient(circle, var(--brand-purple) 0%, transparent 70%);
+  opacity: 0.4; animation-duration: 30s;
+}
+
+.orb-3 {
+  top: 40%; left: 30%; width: 40vw; height: 40vw;
+  background: radial-gradient(circle, var(--brand-pink) 0%, transparent 70%);
+  opacity: 0.3; animation-duration: 22s; animation-delay: -10s;
+}
+
+.orb-4 {
+  top: 10%; right: 20%; width: 45vw; height: 45vw;
+  background: radial-gradient(circle, var(--brand-blue) 0%, transparent 70%);
+  opacity: 0.35; animation-duration: 28s; animation-delay: -15s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, -5%) scale(1.05); }
+  66% { transform: translate(-5%, 5%) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float-particle {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { transform: translate(15px, -15px) scale(1.1); opacity: 0.3; }
+}
+
+/* ==========================================================================
+   Glassmorphism Utilities
+   ========================================================================== */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 16px; /* radius-md approx */
+  transition: all 0.3s ease;
+}
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.glass-element {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px; /* radius-full */
+}
+
+/* ==========================================================================
+   Global Overrides for Glassmorphism in Dark Mode
+   ========================================================================== */
+.dark .bg-white,
+.dark .bg-\[\#f8f9fa\],
+.dark .dark\:bg-slate-900,
+.dark .dark\:bg-slate-900\/60,
+.dark .dark\:bg-slate-900\/40,
+.dark .dark\:bg-slate-800\/40,
+.dark .dark\:bg-slate-800\/80,
+.dark .dark\:bg-\[\#0b0f19\] {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border-color: var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+.dark .border-neutral-200,
+.dark .dark\:border-slate-800,
+.dark .dark\:border-slate-800\/80,
+.dark .border-neutral-200\/40,
+.dark .border-neutral-200\/50,
+.dark .border-neutral-200\/90,
+.dark .dark\:border-slate-700 {
+  border-color: var(--glass-border) !important;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   Special Realistic Star Cursor for Dashboard and Campaigns
+   ========================================================================== */
+.special-cursor, .special-cursor * {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><radialGradient id="coreGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="1"/><stop offset="20%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="60%" stop-color="%23a5f3fc" stop-opacity="0.3"/><stop offset="100%" stop-color="%230891b2" stop-opacity="0"/></radialGradient><linearGradient id="horizSpike" x1="0%" y1="50%" x2="100%" y2="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0"/><stop offset="40%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="50%" stop-color="%23ffffff" stop-opacity="1"/><stop offset="60%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></linearGradient><linearGradient id="vertSpike" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0"/><stop offset="40%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="50%" stop-color="%23ffffff" stop-opacity="1"/><stop offset="60%" stop-color="%23ffffff" stop-opacity="0.8"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></linearGradient></defs><ellipse cx="32" cy="32" rx="30" ry="1.5" fill="url(%23horizSpike)" /><ellipse cx="32" cy="32" rx="1.5" ry="30" fill="url(%23vertSpike)" /><circle cx="32" cy="32" r="14" fill="url(%23coreGlow)" /><circle cx="32" cy="32" r="3.5" fill="%23ffffff" /></svg>') 32 32, auto !important;
+}
+
+/* ==========================================================================
+   Custom Scrollbar
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(25, 25, 30, 0.2);
+  border-radius: 10px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(25, 25, 30, 0.4);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
