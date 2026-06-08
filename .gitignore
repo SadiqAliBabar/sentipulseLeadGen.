@@ -1,0 +1,21 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment / secrets
+.env
+.env.local
+
+# Temp / scratch
+canBeDeleted/
+
+# Node
+node_modules/
+sentipulse_dashboard/dist/

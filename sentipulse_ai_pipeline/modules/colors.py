@@ -1,0 +1,9 @@
+_G   = "\033[92m"   # green
+_R   = "\033[91m"   # red
+_Y   = "\033[93m"   # yellow
+_C   = "\033[96m"   # cyan
+_B   = "\033[94m"   # blue
+_M   = "\033[95m"   # magenta
+_W   = "\033[1m"    # bold
+_DIM = "\033[2m"    # dim
+_X   = "\033[0m"    # reset
